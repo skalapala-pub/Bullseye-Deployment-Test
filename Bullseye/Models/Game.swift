@@ -8,7 +8,7 @@
 import Foundation
 
 struct Game {
-    var target: Int = 42
+    var target: Int = Int.random(in: 1...100)
     var score: Int = 0 // initial score is 0
     var round: Int = 1 // initial round is round 1
     
@@ -18,8 +18,5 @@ struct Game {
         return pointsEarned
     }
     
-    func generateTarget(randomTarget: Int) -> Int {
-        
-        return randomTarget
-    }
+    
 }

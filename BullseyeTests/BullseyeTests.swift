@@ -10,20 +10,20 @@ import XCTest
 
 class BullseyeTests: XCTestCase {
 
+    var testGame: Game! // may be empty or may havea value; regardless, treatit as if ther's a value there
+    
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        testGame = Game()
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        testGame = nil
     }
 
     func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+        XCTAssertEqual(testGame.points(sliderInt: 50), 50)
     }
 
     func testPerformanceExample() throws {
