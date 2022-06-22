@@ -13,9 +13,17 @@ struct Game {
     var round: Int = 1 // initial round is round 1
     
     func points(sliderInt: Int) -> Int {
-        var pointsEarned: Int
-        pointsEarned = sliderInt
-        return pointsEarned
+        var difference: Int
+        var awardedScore: Int = 100
+        if(sliderInt > self.target) {
+            difference = sliderInt - self.target
+        } else if(sliderInt < self.target) {
+            difference = self.target - sliderInt
+        } else {
+            difference = 0
+        }
+        awardedScore -= difference
+        return awardedScore;
     }
     
     
