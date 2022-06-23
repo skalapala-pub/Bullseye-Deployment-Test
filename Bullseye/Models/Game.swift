@@ -8,22 +8,18 @@
 import Foundation
 
 struct Game {
-    var target: Int = Int.random(in: 1...100)
-    var score: Int = 0 // initial score is 0
-    var round: Int = 1 // initial round is round 1
+    var target = Int.random(in: 1...100)
+    var score = 0 // initial score is 0
+    var round = 1 // initial round is round 1
+    
+    /*func points(sliderInt: Int) -> Int {
+        let difference = abs(sliderInt - target)
+        let awardedScore = 100 - difference
+        return awardedScore
+    }*/
     
     func points(sliderInt: Int) -> Int {
-        var difference: Int
-        var awardedScore: Int = 100
-        if(sliderInt > self.target) {
-            difference = sliderInt - self.target
-        } else if(sliderInt < self.target) {
-            difference = self.target - sliderInt
-        } else {
-            difference = 0
-        }
-        awardedScore -= difference
-        return awardedScore;
+        100 - abs(target-sliderInt) // don't need a return keyword because if it's just one line, then swift assumes that the line also returns
     }
     
     

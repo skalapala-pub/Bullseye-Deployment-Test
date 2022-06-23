@@ -10,10 +10,10 @@ import SwiftUI
 //content view has a body, which is a text view which has padding
 struct ContentView: View {
     
-    @State private var alert1IsVisible: Bool = false // false is initial value, since alert isn't visible when we first start
-    @State private var sliderValue: Double = 50.0 // need to make binding to slider value
+    @State private var alert1IsVisible = false // false is initial value, since alert isn't visible when we first start
+    @State private var sliderValue = 50.0 // need to make binding to slider value
     
-    @State private var game: Game = Game() // variable game of type Game; Game() creates an instance of Game
+    @State private var game = Game() // variable game of type Game; Game() creates an instance of Game
     
     var body: some View {
         VStack {
@@ -33,21 +33,21 @@ struct ContentView: View {
                 Text("1")
                     .bold()
                     .font(.body)
-                Slider(value: self.$sliderValue, in:1.0...100.0)
+                Slider(value: $sliderValue, in:1.0...100.0)
                 Text("100")
                     .bold()
                     .font(.body)
             }
             Button(action:{
                 print("Hello, SwiftUI!")
-                self.alert1IsVisible = true
+                alert1IsVisible = true
                 //self is a keyword meaning this particular instance of contentview
                 }) {
                     Text("Hit me")
                 }
                 .alert(isPresented: $alert1IsVisible, content: {
-                    var sliderInt = Int(self.sliderValue.rounded())
-                    return Alert(title: Text("Results"), message: Text("The slider's value is: \(sliderInt) \n You have earned \(self.game.points(sliderInt: sliderInt)) points!"), dismissButton: .default(Text("Awesome!")))
+                    let sliderInt = Int(sliderValue.rounded())
+                    return Alert(title: Text("Results"), message: Text("The slider's value is: \(sliderInt) \n You have earned \(game.points(sliderInt: sliderInt)) points!"), dismissButton: .default(Text("Awesome!")))
             })
              
         }
