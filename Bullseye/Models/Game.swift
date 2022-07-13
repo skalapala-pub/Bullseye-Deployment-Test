@@ -18,8 +18,16 @@ struct Game {
         return awardedScore
     }*/
     
-    func points(sliderInt: Int) -> Int {
-        100 - abs(target-sliderInt) // don't need a return keyword because if it's just one line, then swift assumes that the line also returns
+    mutating func points(sliderInt: Int) -> Int {
+        100 - abs(target-sliderInt)
+    }
+    
+    mutating func reroll() {
+        let old_val = target
+        
+        while target == old_val {
+            target = Int.random(in: 1...100)
+        }
     }
     
     

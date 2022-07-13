@@ -50,6 +50,7 @@ struct InstructionsView: View {
                 .padding(.leading, 30.0)
                 .padding(.trailing, 30.0)
             BigNumberText(text: String(game.target))
+                .accessibilityIdentifier("Target")
         }
     }
 }
@@ -84,7 +85,7 @@ struct HitMeButton: View
                 )
                 .alert(isPresented: $alert1IsVisible, content: {
                     let sliderInt = Int(sliderValue.rounded())
-                    return Alert(title: Text("Results"), message: Text("The slider's value is: \(sliderInt) \n You have earned \(game.points(sliderInt: sliderInt)) points!"), dismissButton: .default(Text("Awesome!")))
+                    return Alert(title: Text("Results"), message: Text("The slider's value is: \(sliderInt) \n You have earned \(game.points(sliderInt: sliderInt)) points!"), dismissButton: .default(Text("Awesome!"),action: {game.reroll()}))
         })
     }
     
