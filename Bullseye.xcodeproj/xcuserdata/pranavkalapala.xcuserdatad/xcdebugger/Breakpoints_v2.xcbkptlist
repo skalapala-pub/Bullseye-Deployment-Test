@@ -7,64 +7,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A2BA7D3F-5776-4AD7-9F61-7BD4F9F934F4"
-            shouldBeEnabled = "Yes"
+            uuid = "2FC3FE3F-A14F-4931-AB25-26D25E8865C4"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BullseyeUITests/BullseyeUITests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "testExample()"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "testElementsExist()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "A2BA7D3F-5776-4AD7-9F61-7BD4F9F934F4 - 9a05101fbadab2a6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BullseyeUITests.BullseyeUITests.testExample() throws -&gt; ()"
-                  moduleName = "BullseyeUITests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pranavkalapala/xcode_projects/Bullseye-Deployment-Testing/BullseyeUITests/BullseyeUITests.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "33"
-                  endingLineNumber = "33"
-                  offsetFromSymbolStart = "128">
-               </Location>
-               <Location
-                  uuid = "A2BA7D3F-5776-4AD7-9F61-7BD4F9F934F4 - 9a05101fbadab2a6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BullseyeUITests.BullseyeUITests.testExample() throws -&gt; ()"
-                  moduleName = "BullseyeUITests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pranavkalapala/xcode_projects/Bullseye-Deployment-Testing/BullseyeUITests/BullseyeUITests.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "33"
-                  endingLineNumber = "33"
-                  offsetFromSymbolStart = "100">
-               </Location>
-               <Location
-                  uuid = "A2BA7D3F-5776-4AD7-9F61-7BD4F9F934F4 - 9a05101fbadab2a6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BullseyeUITests.BullseyeUITests.testExample() throws -&gt; ()"
-                  moduleName = "BullseyeUITests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pranavkalapala/xcode_projects/Bullseye-Deployment-Testing/BullseyeUITests/BullseyeUITests.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "33"
-                  endingLineNumber = "33"
-                  offsetFromSymbolStart = "96">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

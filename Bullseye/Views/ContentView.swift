@@ -36,6 +36,7 @@ struct SliderView: View {
         HStack {
             SliderLabelText(text:"1")
             Slider(value: $sliderValue, in:1.0...100.0)
+                .accessibilityIdentifier("targetSlider")
             SliderLabelText(text:"100")
 
         }
@@ -50,7 +51,7 @@ struct InstructionsView: View {
                 .padding(.leading, 30.0)
                 .padding(.trailing, 30.0)
             BigNumberText(text: String(game.target))
-                .accessibilityIdentifier("Target")
+                .accessibilityIdentifier("targetLabel")
         }
     }
 }
@@ -59,11 +60,16 @@ struct HitMeButton: View
 {
     @Binding var alert1IsVisible: Bool // false is initial value, since alert isn't visible when we first start
     @Binding var sliderValue: Double // need to make binding to slider value
+    @State private var sliderInt: Int!
+    @State private var points: Int!
     
     @Binding var game: Game // variable game of type Game; Game() creates an instance of Game
     var body: some View{
         Button(action:{
-            print("Hello, SwiftUI!")
+            sliderInt = Int(sliderValue.rounded())
+            points = game.points(sliderInt: sliderInt)
+            //game.updateScore(points: points)
+        
             alert1IsVisible = true
             //self is a keyword meaning this particular instance of contentview
             }) {
@@ -84,8 +90,9 @@ struct HitMeButton: View
                         .strokeBorder(Color.white, lineWidth: 2.0)
                 )
                 .alert(isPresented: $alert1IsVisible, content: {
-                    let sliderInt = Int(sliderValue.rounded())
-                    return Alert(title: Text("Results"), message: Text("The slider's value is: \(sliderInt) \n You have earned \(game.points(sliderInt: sliderInt)) points!"), dismissButton: .default(Text("Awesome!"),action: {game.reroll()}))
+                    //let sliderInt = Int(sliderValue.rounded())
+                    return Alert(title: Text("Results"), message: Text("The slider's value is: \(sliderInt ?? 0) \n You have earned \(points) points!"), dismissButton: .default(Text("Awesome!"),action: {game.reroll()}))
+                        
         })
     }
     

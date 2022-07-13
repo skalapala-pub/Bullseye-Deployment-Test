@@ -22,13 +22,17 @@ struct Game {
         100 - abs(target-sliderInt)
     }
     
-    mutating func reroll() {
+    mutating func reroll() -> Void {
         let old_val = target
         
         while target == old_val {
             target = Int.random(in: 1...100)
         }
     }
+    
+//    mutating func updateScore(points: Int) -> Void {
+//        score += points
+//    }
     
     
 }
