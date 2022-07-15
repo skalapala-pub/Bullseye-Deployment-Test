@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "E17AB7D5-D4DD-4ACA-97C1-13397DA572C3",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Bullseye-test-app.xcodeproj",
+        "identifier" : "88550E9F2860CE0C0042A7DC",
+        "name" : "Bullseye-test-appTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Bullseye-test-app.xcodeproj",
+        "identifier" : "88550EA92860CE0C0042A7DC",
+        "name" : "Bullseye-test-appUITests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Bullseye-test-app.xcodeproj",
+        "identifier" : "84E6F56A28811BCE00DA2A0F",
+        "name" : "Bullseye-test-appUIPerfTests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Bullseye
+@testable import Bullseye_test_app
 
 class BullseyeTests: XCTestCase {
 
