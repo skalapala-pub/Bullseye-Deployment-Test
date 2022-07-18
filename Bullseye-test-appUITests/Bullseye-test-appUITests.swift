@@ -70,21 +70,21 @@ class BullseyeUITests: XCTestCase {
         targetSlider.adjust(toNormalizedSliderPosition: targetVal/100)
         hitMeButton.tap()
         
-        let resultAlert = app.alerts["Results"]
+        //let resultAlert = app.alerts["Results"]
         let resultMessage = app.alerts["Results"].scrollViews.otherElements.staticTexts.element(boundBy: 1)
-        let resultButton = app.alerts["Results"].scrollViews.otherElements.buttons["Awesome!"]
+        //let resultButton = app.alerts["Results"].scrollViews.otherElements.buttons["Awesome!"]
         
         let components = resultMessage.label.components(separatedBy: " ")
         print(resultMessage.label)
         print(components[components.count - 2])
     }
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 15.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
-    }
+//    func testLaunchPerformance() throws {
+//        if #available(macOS 10.15, iOS 15.0, tvOS 13.0, watchOS 7.0, *) {
+//            // This measures how long it takes to launch your application.
+//            measure(metrics: [XCTApplicationLaunchMetric()]) {
+//                XCUIApplication().launch()
+//            }
+//        }
+//    }
 }

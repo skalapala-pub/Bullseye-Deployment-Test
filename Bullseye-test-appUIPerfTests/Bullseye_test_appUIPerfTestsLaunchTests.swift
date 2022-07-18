@@ -1,13 +1,13 @@
 //
-//  BullseyeUITestsLaunchTests.swift
-//  BullseyeUITests
+//  Bullseye_test_appUIPerfTestsLaunchTests.swift
+//  Bullseye-test-appUIPerfTests
 //
-//  Created by Isabelle Chang on 6/20/22.
+//  Created by Pranav Kalapala on 7/14/22.
 //
 
 import XCTest
 
-class BullseyeUITestsLaunchTests: XCTestCase {
+class Bullseye_test_appUIPerfTestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
