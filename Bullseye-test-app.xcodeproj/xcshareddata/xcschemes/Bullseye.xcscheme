@@ -32,7 +32,10 @@
             reference = "container:TestPlans/ShortTest.xctestplan">
          </TestPlanReference>
          <TestPlanReference
-            reference = "container:TestPlans/LongTest.xctestplan"
+            reference = "container:TestPlans/LongTest.xctestplan">
+         </TestPlanReference>
+         <TestPlanReference
+            reference = "container:TestPlans/UnitTests.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>

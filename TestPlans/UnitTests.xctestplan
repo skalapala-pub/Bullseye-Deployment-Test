@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "67A36461-79F1-461B-BB23-FFD8451FD35C",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Bullseye-test-app.xcodeproj",
+        "identifier" : "88550E9F2860CE0C0042A7DC",
+        "name" : "Bullseye-test-appTests"
+      }
+    }
+  ],
+  "version" : 1
+}
