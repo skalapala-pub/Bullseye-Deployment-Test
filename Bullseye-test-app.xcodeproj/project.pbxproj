@@ -48,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		841E39862885D73300595A17 /* UnitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = UnitTests.xctestplan; path = TestPlans/UnitTests.xctestplan; sourceTree = "<group>"; };
+		841E39872885DAE500595A17 /* UITests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = UITests.xctestplan; path = TestPlans/UITests.xctestplan; sourceTree = "<group>"; };
 		84E6F56B28811BCE00DA2A0F /* Bullseye-test-appUIPerfTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bullseye-test-appUIPerfTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E6F56D28811BCE00DA2A0F /* Bullseye_test_appUIPerfTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullseye_test_appUIPerfTests.swift; sourceTree = "<group>"; };
 		84E6F56F28811BCE00DA2A0F /* Bullseye_test_appUIPerfTestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullseye_test_appUIPerfTestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -122,6 +123,7 @@
 		88550E872860CE0A0042A7DC = {
 			isa = PBXGroup;
 			children = (
+				841E39872885DAE500595A17 /* UITests.xctestplan */,
 				841E39862885D73300595A17 /* UnitTests.xctestplan */,
 				84E6F57728811E6500DA2A0F /* TestPlans */,
 				88550E922860CE0A0042A7DC /* Bullseye-test-app */,
