@@ -29,11 +29,17 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:TestPlans/ShortTest.xctestplan">
+            reference = "container:TestPlans/ShortTest.xctestplan"
+            default = "YES">
          </TestPlanReference>
          <TestPlanReference
-            reference = "container:TestPlans/LongTest.xctestplan"
-            default = "YES">
+            reference = "container:TestPlans/LongTest.xctestplan">
+         </TestPlanReference>
+         <TestPlanReference
+            reference = "container:TestPlans/UnitTests.xctestplan">
+         </TestPlanReference>
+         <TestPlanReference
+            reference = "container:TestPlans/UITests.xctestplan">
          </TestPlanReference>
       </TestPlans>
       <Testables>
@@ -42,7 +48,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "88550E9F2860CE0C0042A7DC"
-               BuildableName = "BullseyeTests.xctest"
+               BuildableName = "Bullseye-test-appTests.xctest"
                BlueprintName = "Bullseye-test-appTests"
                ReferencedContainer = "container:Bullseye-test-app.xcodeproj">
             </BuildableReference>
@@ -52,7 +58,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "88550EA92860CE0C0042A7DC"
-               BuildableName = "BullseyeUITests.xctest"
+               BuildableName = "Bullseye-test-appUITests.xctest"
                BlueprintName = "Bullseye-test-appUITests"
                ReferencedContainer = "container:Bullseye-test-app.xcodeproj">
             </BuildableReference>
