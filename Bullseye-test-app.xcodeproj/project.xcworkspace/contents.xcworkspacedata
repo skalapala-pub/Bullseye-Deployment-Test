@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/pranavkalapala/xcode_projects/Bullseye-Deployment-Testing/Bullseye-test-app.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>
