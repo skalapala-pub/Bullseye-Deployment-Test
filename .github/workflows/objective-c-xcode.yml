@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     name: Build and analyse default scheme using xcodebuild command
-    runs-on: pranav-mac-mini
+    runs-on: self-hosted
 
     steps:
       - name: Checkout
