@@ -32,15 +32,6 @@
             reference = "container:TestPlans/ShortTest.xctestplan"
             default = "YES">
          </TestPlanReference>
-         <TestPlanReference
-            reference = "container:TestPlans/LongTest.xctestplan">
-         </TestPlanReference>
-         <TestPlanReference
-            reference = "container:TestPlans/UnitTests.xctestplan">
-         </TestPlanReference>
-         <TestPlanReference
-            reference = "container:TestPlans/UITests.xctestplan">
-         </TestPlanReference>
       </TestPlans>
       <Testables>
          <TestableReference
@@ -60,16 +51,6 @@
                BlueprintIdentifier = "88550EA92860CE0C0042A7DC"
                BuildableName = "Bullseye-test-appUITests.xctest"
                BlueprintName = "Bullseye-test-appUITests"
-               ReferencedContainer = "container:Bullseye-test-app.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "84E6F56A28811BCE00DA2A0F"
-               BuildableName = "Bullseye-test-appUIPerfTests.xctest"
-               BlueprintName = "Bullseye-test-appUIPerfTests"
                ReferencedContainer = "container:Bullseye-test-app.xcodeproj">
             </BuildableReference>
          </TestableReference>
