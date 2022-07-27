@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     name: Build and analyse default scheme using xcodebuild command
-    runs-on: self-hosted
+    runs-on: build-runner
 
     steps:
       - name: Checkout
