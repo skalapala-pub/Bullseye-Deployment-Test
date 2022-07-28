@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8439D2672889B984008A4009 /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8439D2662889B984008A4009 /* AppCenterAnalytics */; };
+		8439D2692889B984008A4009 /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 8439D2682889B984008A4009 /* AppCenterCrashes */; };
+		8439D26B2889B984008A4009 /* AppCenterDistribute in Frameworks */ = {isa = PBXBuildFile; productRef = 8439D26A2889B984008A4009 /* AppCenterDistribute */; };
+		8439D2AF288CECDA008A4009 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8439D2AE288CECDA008A4009 /* XCTest.framework */; };
 		84E6F56E28811BCE00DA2A0F /* Bullseye_test_appUIPerfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E6F56D28811BCE00DA2A0F /* Bullseye_test_appUIPerfTests.swift */; };
 		84E6F57028811BCE00DA2A0F /* Bullseye_test_appUIPerfTestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E6F56F28811BCE00DA2A0F /* Bullseye_test_appUIPerfTestsLaunchTests.swift */; };
 		8823C0AB286A1EEA00D6FAC2 /* TextViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8823C0AA286A1EEA00D6FAC2 /* TextViews.swift */; };
@@ -49,6 +53,7 @@
 /* Begin PBXFileReference section */
 		841E39862885D73300595A17 /* UnitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = UnitTests.xctestplan; path = TestPlans/UnitTests.xctestplan; sourceTree = "<group>"; };
 		841E39872885DAE500595A17 /* UITests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = UITests.xctestplan; path = TestPlans/UITests.xctestplan; sourceTree = "<group>"; };
+		8439D2AE288CECDA008A4009 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		84756AF52885EB21001772B4 /* Bullseye-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Bullseye-Info.plist"; sourceTree = "<group>"; };
 		84E6F56B28811BCE00DA2A0F /* Bullseye-test-appUIPerfTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bullseye-test-appUIPerfTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E6F56D28811BCE00DA2A0F /* Bullseye_test_appUIPerfTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullseye_test_appUIPerfTests.swift; sourceTree = "<group>"; };
@@ -83,6 +88,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8439D2672889B984008A4009 /* AppCenterAnalytics in Frameworks */,
+				8439D2692889B984008A4009 /* AppCenterCrashes in Frameworks */,
+				8439D26B2889B984008A4009 /* AppCenterDistribute in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,12 +105,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8439D2AF288CECDA008A4009 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8439D2AD288CECDA008A4009 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8439D2AE288CECDA008A4009 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		84E6F56C28811BCE00DA2A0F /* Bullseye-test-appUIPerfTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +150,7 @@
 				88550EAD2860CE0C0042A7DC /* Bullseye-test-appUITests */,
 				84E6F56C28811BCE00DA2A0F /* Bullseye-test-appUIPerfTests */,
 				88550E912860CE0A0042A7DC /* Products */,
+				8439D2AD288CECDA008A4009 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -245,6 +263,11 @@
 			dependencies = (
 			);
 			name = Bullseye;
+			packageProductDependencies = (
+				8439D2662889B984008A4009 /* AppCenterAnalytics */,
+				8439D2682889B984008A4009 /* AppCenterCrashes */,
+				8439D26A2889B984008A4009 /* AppCenterDistribute */,
+			);
 			productName = Bullseye;
 			productReference = 88550E902860CE0A0042A7DC /* Bullseye-test-app.app */;
 			productType = "com.apple.product-type.application";
@@ -321,6 +344,9 @@
 				Base,
 			);
 			mainGroup = 88550E872860CE0A0042A7DC;
+			packageReferences = (
+				8439D2652889B984008A4009 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */,
+			);
 			productRefGroup = 88550E912860CE0A0042A7DC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -430,13 +456,17 @@
 		84E6F57428811BCE00DA2A0F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7S5Z55UPZP;
+				DEVELOPMENT_TEAM = 74Y2M3642N;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.canfieldsci.Bullseye-test-appUIPerfTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -447,13 +477,17 @@
 		84E6F57528811BCE00DA2A0F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7S5Z55UPZP;
+				DEVELOPMENT_TEAM = 74Y2M3642N;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.canfieldsci.Bullseye-test-appUIPerfTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -580,10 +614,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Bullseye-test-app/Preview Content\"";
-				DEVELOPMENT_TEAM = 7S5Z55UPZP;
+				DEVELOPMENT_TEAM = 74Y2M3642N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Bullseye-Info.plist";
@@ -598,8 +633,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.canfieldsci.bullseye;
+				PRODUCT_BUNDLE_IDENTIFIER = com.canfield.BullsEye;
 				PRODUCT_NAME = "Bullseye-test-app";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -611,10 +647,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Bullseye-test-app/Preview Content\"";
-				DEVELOPMENT_TEAM = 7S5Z55UPZP;
+				DEVELOPMENT_TEAM = 74Y2M3642N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Bullseye-Info.plist";
@@ -629,8 +666,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.canfieldsci.bullseye;
+				PRODUCT_BUNDLE_IDENTIFIER = com.canfield.BullsEye;
 				PRODUCT_NAME = "Bullseye-test-app";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -644,7 +682,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7S5Z55UPZP;
+				DEVELOPMENT_TEAM = 74Y2M3642N;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MARKETING_VERSION = 1.0;
@@ -664,7 +702,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7S5Z55UPZP;
+				DEVELOPMENT_TEAM = 74Y2M3642N;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MARKETING_VERSION = 1.0;
@@ -681,10 +719,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7S5Z55UPZP;
+				DEVELOPMENT_TEAM = 74Y2M3642N;
 				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LD_RUNPATH_SEARCH_PATHS_SHALLOW_BUNDLE_$(SHALLOW_BUNDLE))",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = isabellechang.BullseyeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -699,10 +743,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7S5Z55UPZP;
+				DEVELOPMENT_TEAM = 74Y2M3642N;
 				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LD_RUNPATH_SEARCH_PATHS_SHALLOW_BUNDLE_$(SHALLOW_BUNDLE))",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = isabellechang.BullseyeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -762,6 +812,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8439D2652889B984008A4009 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/microsoft/appcenter-sdk-apple";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8439D2662889B984008A4009 /* AppCenterAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8439D2652889B984008A4009 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterAnalytics;
+		};
+		8439D2682889B984008A4009 /* AppCenterCrashes */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8439D2652889B984008A4009 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterCrashes;
+		};
+		8439D26A2889B984008A4009 /* AppCenterDistribute */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8439D2652889B984008A4009 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterDistribute;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 88550E882860CE0A0042A7DC /* Project object */;
 }

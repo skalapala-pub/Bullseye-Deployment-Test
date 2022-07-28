@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 
 //content view has a body, which is a text view which has padding
 struct ContentView: View {
@@ -69,6 +72,8 @@ struct HitMeButton: View
             sliderInt = Int(sliderValue.rounded())
             points = game.points(sliderInt: sliderInt)
             //game.updateScore(points: points)
+            Analytics.trackEvent("hit button")
+            print("boo")
         
             alert1IsVisible = true
             //self is a keyword meaning this particular instance of contentview

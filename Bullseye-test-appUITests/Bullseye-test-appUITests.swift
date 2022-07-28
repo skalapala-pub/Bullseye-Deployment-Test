@@ -40,6 +40,7 @@ class BullseyeUITests: XCTestCase {
         XCTAssertFalse(!hitMeButton.exists)
         
         hitMeButton.tap()
+        sleep(1)
         
         let resultAlert = app.alerts["Results"]
         let resultButton = app.alerts["Results"].scrollViews.otherElements.buttons["Awesome!"]
