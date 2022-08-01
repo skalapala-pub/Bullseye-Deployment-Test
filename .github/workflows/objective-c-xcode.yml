@@ -2,7 +2,9 @@ name: Xcode - Build and Analyze
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches:
+        - "main"
+        - "dev"
 
 jobs:
   build:
