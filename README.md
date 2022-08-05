@@ -1,7 +1,7 @@
 # Bullseye-Deployment-Test
 ![Visual Studio App Center Releases](https://img.shields.io/visual-studio-app-center/releases/version/skalapala/Bullseye-test-app/a53e7ec49c9d97e7ea731860602edab68a0061e8?color=green&label=dev%20release)
 
-CI Server Status
+CI Server Status <br>
 ![Custom badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fec20f42690640e.lhrtunnel.link%2Fget_status)
 
 Latest Workflow <br>
