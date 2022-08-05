@@ -3,12 +3,12 @@
 
 Latest Workflow <br>
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skalapala-pub/Bullseye-Deployment-Test/Xcode%20-%20Build%20and%20Analyze?label=build%20and%20analyze) <br>
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skalapala-pub/Bullseye-Deployment-Test/iOS%20starter%20workflow?label=testing)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skalapala-pub/Bullseye-Deployment-Test/Xcode%20Testing?label=testing)
 
 Main Branch <br>
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/skalapala-pub/Bullseye-Deployment-Test/Xcode%20-%20Build%20and%20Analyze/main?label=build%20and%20analyze) <br>
-![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/skalapala-pub/Bullseye-Deployment-Test/iOS%20starter%20workflow/main?label=testing)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/skalapala-pub/Bullseye-Deployment-Test/Xcode%20Testing/main?label=testing)
 
 Dev Branch <br>
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/skalapala-pub/Bullseye-Deployment-Test/Xcode%20-%20Build%20and%20Analyze/dev?label=build%20and%20analyze) <br>
-![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/skalapala-pub/Bullseye-Deployment-Test/iOS%20starter%20workflow/dev?label=testing)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/skalapala-pub/Bullseye-Deployment-Test/Xcode%20Testing/dev?label=testing)
