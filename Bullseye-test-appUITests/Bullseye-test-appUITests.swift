@@ -78,6 +78,8 @@ class BullseyeUITests: XCTestCase {
         let components = resultMessage.label.components(separatedBy: " ")
         print(resultMessage.label)
         print(components[components.count - 2])
+        
+        //XCTAssertTrue(false)
     }
 
 //    func testLaunchPerformance() throws {
