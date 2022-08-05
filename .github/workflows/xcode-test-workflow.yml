@@ -1,10 +1,12 @@
 name: Xcode Testing
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - "main-**"
       - "dev-**"
+      - "dev"
   pull_request:
     branches:
         - "main"
