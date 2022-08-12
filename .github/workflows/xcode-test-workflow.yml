@@ -46,10 +46,15 @@ jobs:
           scheme: ${{ 'default' }}
           #platform: ${{ 'iOS Simulator' }}
         run: |
-          # -destination "id=00008101-001244642686001E"
           echo Destination String: ${{ env.result }}
           # xcrun xctrace returns via stderr, not the expected stdout (see https://developer.apple.com/forums/thread/663959)
           if [ $scheme = default ]; then scheme=$(cat default); fi
           if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
-          xcodebuild test-without-building -scheme "$scheme" -"$filetype_parameter" "$file_to_build" ${{ env.result}} -allowProvisioningUpdates | xcpretty && exit ${PIPESTATUS[0]}
+          xcodebuild test-without-building -scheme "$scheme" -"$filetype_parameter" "$file_to_build" ${{ env.result}} -allowProvisioningUpdates -resultBundlePath TestResults | xcpretty && exit ${PIPESTATUS[0]}
+      - name: Generate Results
+        uses: kishikawakatsumi/xcresulttool@v1.4.0
+        with:
+          path: TestResults.xcresult
+        if: success() || failure()
+
