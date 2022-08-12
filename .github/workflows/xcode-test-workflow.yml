@@ -63,5 +63,6 @@ jobs:
         with:
           path: TestResults.xcresult
           show-passed-tests: false
+          title: Code Coverage
         if: success() || failure()
 
