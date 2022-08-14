@@ -39,4 +39,6 @@ jobs:
           xcodebuild clean build analyze \
           -scheme "$scheme" \
           -"$filetype_parameter" "$file_to_build" \
+          -sdk iphoneos \
+          -destination generic/platform=iOS \
           -derivedDataPath ./DerivedData | xcpretty && exit ${PIPESTATUS[0]}
