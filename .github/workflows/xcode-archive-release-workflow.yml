@@ -66,5 +66,5 @@ jobs:
           appcenter distribute release \
           --app ${{ env.owner }}/${{ env.app_name }} \
           --file ./exportOutputData/${{ env.app_name }}.ipa \
-          --group \"${{ env.group }}\" \
+          --group ${{ env.group }} \
           --token ${{ secrets.APP_CENTER_APP_API_TOKEN }}
