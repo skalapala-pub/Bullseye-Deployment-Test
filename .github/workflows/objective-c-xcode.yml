@@ -12,9 +12,12 @@ on:
         - "dev"
   workflow_dispatch:
 
+env:
+  scheme: ${{ 'default' }}
+
 jobs:
   build:
-    name: Build and analyse default scheme using xcodebuild command
+    name: Build and Analyze
     runs-on: build-runner
 
     steps:
@@ -26,12 +29,14 @@ jobs:
           default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
           echo $default | cat >default
           echo Using default scheme: $default
-      - name: Build
-        env:
-          scheme: ${{ 'default' }}
+
+      - name: Build and Analyze
         run: |
           if [ $scheme = default ]; then scheme=$(cat default); fi
           if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
-          echo xcodebuild clean build analyze -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -derivedDataPath ./DerivedData
-          xcodebuild clean build analyze -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -derivedDataPath ./DerivedData | xcpretty && exit ${PIPESTATUS[0]}
+
+          xcodebuild clean build analyze \
+          -scheme "$scheme" \
+          -"$filetype_parameter" "$file_to_build" \
+          -derivedDataPath ./DerivedData | xcpretty && exit ${PIPESTATUS[0]}

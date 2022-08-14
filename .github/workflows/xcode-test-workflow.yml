@@ -1,7 +1,6 @@
 name: Xcode Testing
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - "main-**"
@@ -11,6 +10,10 @@ on:
     branches:
         - "main"
         - "dev"
+  workflow_dispatch:
+
+env:
+  scheme: ${{ 'default' }}
 
 jobs:
   build:
@@ -20,44 +23,53 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Set Default Scheme
         run: |
           scheme_list=$(xcodebuild -list -json | tr -d "\n")
           default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
           echo $default | cat >default
           echo Using default scheme: $default
+
       - name: Set Destinations
         run: |
           result=$(./.github/workflows/id_devices.sh)
           echo Destination String: $result
           echo "result=$result" >> $GITHUB_ENV
+
       - name: Build
-        env:
-          scheme: ${{ 'default' }}
-          #platform: ${{ 'iOS Simulator' }}
         run: |
-          # xcrun xctrace returns via stderr, not the expected stdout (see https://developer.apple.com/forums/thread/663959)
           if [ $scheme = default ]; then scheme=$(cat default); fi
           if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
-          xcodebuild build-for-testing -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -sdk iphoneos -allowProvisioningUpdates | xcpretty && exit ${PIPESTATUS[0]}
+
+          xcodebuild build-for-testing \
+          -scheme "$scheme" \
+          -"$filetype_parameter" "$file_to_build" \
+          -sdk iphoneos \
+          -allowProvisioningUpdates | xcpretty && exit ${PIPESTATUS[0]}
+
       - name: Test
-        env:
-          scheme: ${{ 'default' }}
-          #platform: ${{ 'iOS Simulator' }}
         run: |
           echo Destination String: ${{ env.result }}
-          # xcrun xctrace returns via stderr, not the expected stdout (see https://developer.apple.com/forums/thread/663959)
           if [ $scheme = default ]; then scheme=$(cat default); fi
           if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
-          xcodebuild test-without-building -scheme "$scheme" -"$filetype_parameter" "$file_to_build" ${{ env.result}} -allowProvisioningUpdates -resultBundlePath TestResults | xcpretty && exit ${PIPESTATUS[0]}
+
+          xcodebuild test-without-building \
+          -scheme "$scheme" \
+          -"$filetype_parameter" "$file_to_build" \
+          ${{ env.result}} \
+          -allowProvisioningUpdates \
+          -resultBundlePath TestResults | xcpretty && exit ${PIPESTATUS[0]}
+
       - name: Generate Results
         uses: kishikawakatsumi/xcresulttool@v1.4.0
         with:
           path: TestResults.xcresult
           show-code-coverage: false
         if: success() || failure()
+
       - name: Generate Code Coverage
         uses: kishikawakatsumi/xcresulttool@v1.4.0
         with:
