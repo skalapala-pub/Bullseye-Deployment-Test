@@ -7,6 +7,7 @@ env:
   scheme: ${{ 'default' }}
   owner: ${{ 'skalapala' }}
   app_name: ${{ 'Bullseye-test-app' }}
+  group: ${{ 'Collaborators' }}
 
 jobs:
   build:
@@ -59,3 +60,11 @@ jobs:
         with:
           name: IPA file
           path: ./exportOutputData/**.ipa
+
+      - name: Distribute IPA to App Center
+        run: |
+          appcenter distribute release \
+          --app ${{ env.owner }}/${{ env.app_name }} \
+          --file ./exportOutputData/${{ env.app_name }}.ipa \
+          --group \"${{ env.group }}\" \
+          --token ${{ secrets.APP_CENTER_APP_API_TOKEN }}
