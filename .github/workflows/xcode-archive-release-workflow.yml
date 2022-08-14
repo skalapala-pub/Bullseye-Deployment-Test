@@ -34,14 +34,27 @@ jobs:
           -configuration release \
           -sdk iphoneos \
           -destination generic/platform=iOS \
-          -archivePath ./exportData/result.xcarchive | xcpretty && exit ${PIPESTATUS[0]}
+          -archivePath ./exportOutputData/result.xcarchive | xcpretty && exit ${PIPESTATUS[0]}
 
       - name: Upload Symbols and Info.plist Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: Symbols and Info.plist
           path: |
-            ./exportData/result.xcarchive/dSYMs
-            ./exportData/result.xcarchive/Info.plist
+            ./exportOutputData/result.xcarchive/dSYMs
+            ./exportOutputData/result.xcarchive/Info.plist
+
+      - name: Create IPA
+        run: |
+          xcodebuild -exportArchive \
+          -archivePath ./exportOutputData/result.xcarchive \
+          -exportPath ./exportOutputData/ \
+          -exportOptionsPlist ./exportInputData/export.plist
+
+      - name: Upload IPA Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: IPA file
+          path: .exportOutputData/**.ipa
 
     
