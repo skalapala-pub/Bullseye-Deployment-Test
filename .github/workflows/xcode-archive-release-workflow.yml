@@ -3,6 +3,11 @@ name: Xcode Archive and Release Build
 on:
   workflow_dispatch:
 
+env:
+  scheme: ${{ 'default' }}
+  owner: ${{ 'skalapala' }}
+  app_name: ${{ 'Bullseye-test-app' }}
+
 jobs:
   build:
     name: Create Archive, IPA, and release build
@@ -20,8 +25,6 @@ jobs:
           echo Using default scheme: $default
       
       - name: Create Archive
-        env:
-          scheme: ${{ 'default' }}
         run: |
           if [ $scheme = default ]; then scheme=$(cat default); fi
 
@@ -56,5 +59,3 @@ jobs:
         with:
           name: IPA file
           path: ./exportOutputData/**.ipa
-
-    
