@@ -37,7 +37,7 @@ jobs:
           -archivePath ./exportData/result.xcarchive | xcpretty && exit ${PIPESTATUS[0]}
 
       - name: Upload Symbols and Info.plist Artifacts
-      - uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3
         with:
           name: Symbols and Info.plist
           path: |
