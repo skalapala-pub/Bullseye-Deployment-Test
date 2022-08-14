@@ -47,7 +47,9 @@ jobs:
           -scheme "$scheme" \
           -"$filetype_parameter" "$file_to_build" \
           -sdk iphoneos \
-          -allowProvisioningUpdates | xcpretty && exit ${PIPESTATUS[0]}
+          -derivedDataPath ./DerivedData \
+          -allowProvisioningUpdates \
+          -allowProvisioningDeviceRegistration | xcpretty && exit ${PIPESTATUS[0]}
 
       - name: Test
         run: |
@@ -60,7 +62,9 @@ jobs:
           -scheme "$scheme" \
           -"$filetype_parameter" "$file_to_build" \
           ${{ env.result}} \
+          -derivedDataPath ./DerivedData \
           -allowProvisioningUpdates \
+          -allowProvisioningDeviceRegistration \
           -resultBundlePath TestResults | xcpretty && exit ${PIPESTATUS[0]}
 
       - name: Generate Results
