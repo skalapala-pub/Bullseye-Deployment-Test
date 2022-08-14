@@ -30,9 +30,9 @@ struct Game {
         }
     }
     
-//    mutating func updateScore(points: Int) -> Void {
-//        score += points
-//    }
+    mutating func updateScore(points: Int) -> Void {
+        score += points
+    }
     
     
 }

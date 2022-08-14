@@ -71,7 +71,7 @@ struct HitMeButton: View
         Button(action:{
             sliderInt = Int(sliderValue.rounded())
             points = game.points(sliderInt: sliderInt)
-            //game.updateScore(points: points)
+            game.updateScore(points: points)
             Analytics.trackEvent("hit button")
             print("boo")
         
