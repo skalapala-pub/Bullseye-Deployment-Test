@@ -26,7 +26,7 @@ jobs:
 
       - name: Print Workflow-Branch name
         run: |
-          echo ${GITHUB_EVENT_NAME}-${GITHUB_HEAD_REF}
+          echo ${GITHUB_EVENT_NAME}-${GITHUB_REF_NAME}
 
       - name: Set Default Scheme
         run: |
