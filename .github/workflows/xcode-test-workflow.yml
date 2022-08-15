@@ -1,4 +1,4 @@
-name: Xcode Testing
+name: Xcode - Testing
 
 on:
   push:
@@ -12,21 +12,21 @@ on:
         - "dev"
   workflow_dispatch:
 
+concurrency:
+  group: ${GITHUB_EVENT_NAME}-${GITHUB_REF_NAME}
+  cancel-in-progress: true
+
 env:
   scheme: ${{ 'default' }}
 
 jobs:
   build:
-    name: Build and Test default scheme using any available iPhone simulator
+    name: Build and Test
     runs-on: test-runner
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Print Workflow-Branch name
-        run: |
-          echo ${GITHUB_EVENT_NAME}-${GITHUB_REF_NAME}
 
       - name: Set Default Scheme
         run: |
