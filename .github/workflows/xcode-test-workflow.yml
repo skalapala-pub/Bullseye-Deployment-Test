@@ -24,6 +24,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Print Workflow-Branch name
+        run: |
+          echo ${{ GITHUB_EVENT_NAME }}-${{ GITHUB_HEAD_REF }}
+
       - name: Set Default Scheme
         run: |
           scheme_list=$(xcodebuild -list -json | tr -d "\n")
