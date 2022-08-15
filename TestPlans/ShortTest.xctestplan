@@ -9,6 +9,15 @@
     }
   ],
   "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:Bullseye-test-app.xcodeproj",
+          "identifier" : "88550E8F2860CE0A0042A7DC",
+          "name" : "Bullseye"
+        }
+      ]
+    },
     "testTimeoutsEnabled" : true
   },
   "testTargets" : [
