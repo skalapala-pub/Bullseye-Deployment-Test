@@ -79,7 +79,8 @@ class BullseyeUITests: XCTestCase {
         print(resultMessage.label)
         print(components[components.count - 2])
         
-        //XCTAssertTrue(false)        
+        //XCTAssertTrue(false)
+        //comment
     }
 
 //    func testLaunchPerformance() throws {
