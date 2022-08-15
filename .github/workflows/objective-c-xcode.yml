@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.event_name }}-${{ github.ref_name }}
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref_name }}
   cancel-in-progress: true
 
 env:
@@ -29,7 +29,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Print Concurrency String
-        run: echo ${{ github.event_name }}-${{ github.ref_name }}
+        run: echo ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref_name }}
 
       - name: Set Default Scheme
         run: |
