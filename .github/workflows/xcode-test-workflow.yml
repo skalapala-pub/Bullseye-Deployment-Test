@@ -69,14 +69,14 @@ jobs:
           -resultBundlePath TestResults | xcpretty && exit ${PIPESTATUS[0]}
 
       - name: Generate Results
-        uses: kishikawakatsumi/xcresulttool@v1.4.0
+        uses: kishikawakatsumi/xcresulttool@main
         with:
           path: TestResults.xcresult
           show-code-coverage: false
         if: success() || failure()
 
       - name: Generate Code Coverage
-        uses: kishikawakatsumi/xcresulttool@v1.4.0
+        uses: kishikawakatsumi/xcresulttool@main
         with:
           path: TestResults.xcresult
           show-passed-tests: false
