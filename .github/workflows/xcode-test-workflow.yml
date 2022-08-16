@@ -27,7 +27,7 @@ jobs:
     steps:
 
       - name: Clear Work Directory
-        uses: rtCamp/action-cleanup@master
+        run: rm -rf *
 
       - name: Checkout
         uses: actions/checkout@v3
