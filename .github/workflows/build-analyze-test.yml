@@ -22,7 +22,7 @@ env:
 jobs:
   build:
     name: Build
-    runs-on: test-runner
+    runs-on: build-runner
   
     steps:
       - name: Clear Working Directory
@@ -54,13 +54,12 @@ jobs:
           -"$filetype_parameter" "$file_to_build" \
           -sdk iphoneos \
           -destination generic/platform=iOS \
-          -derivedDataPath ./DerivedData \
           -allowProvisioningUpdates \
           -allowProvisioningDeviceRegistration | xcpretty && exit ${PIPESTATUS[0]}
 
   analyze:
     name: Analyze
-    runs-on: test-runner
+    runs-on: build-runner
     needs: [build]
 
     steps:
@@ -74,8 +73,7 @@ jobs:
           -scheme "$scheme" \
           -"$filetype_parameter" "$file_to_build" \
           -sdk iphoneos \
-          -destination generic/platform=iOS \
-          -derivedDataPath ./DerivedData | xcpretty && exit ${PIPESTATUS[0]}
+          -destination generic/platform=iOS | xcpretty && exit ${PIPESTATUS[0]}
 
   test:
     name: Test
@@ -103,13 +101,12 @@ jobs:
           -derivedDataPath ./DerivedData \
           -allowProvisioningUpdates \
           -allowProvisioningDeviceRegistration \
-          -resultBundlePath TestResults | xcpretty && exit ${PIPESTATUS[0]}""
+          -resultBundlePath TestResults | xcpretty && exit ${PIPESTATUS[0]}"
 
           xcrun xcodebuild test-without-building \
           -scheme "$scheme" \
           -"$filetype_parameter" "$file_to_build" \
           ${{ env.result}} \
-          -derivedDataPath ./DerivedData \
           -allowProvisioningUpdates \
           -allowProvisioningDeviceRegistration \
           -resultBundlePath TestResults | xcpretty && exit ${PIPESTATUS[0]}
