@@ -61,7 +61,7 @@ jobs:
   analyze:
     name: Analyze
     runs-on: build-runner
-    needs: [build]
+    needs: [build, test]
 
     steps:
       - name: Analyze
