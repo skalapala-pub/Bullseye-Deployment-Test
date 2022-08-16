@@ -25,13 +25,13 @@ jobs:
     runs-on: build-runner
   
     steps:
-    #   - name: Clear Working Directory
-    #     run: |
-    #       pwd
-    #       ls
-    #       rm -rf *
-    #       pwd
-    #       ls
+      - name: Clear Working Directory
+        run: |
+          pwd
+          ls
+          rm -rf *
+          pwd
+          ls
       
       - name: Checkout
         uses: actions/checkout@v3
@@ -56,7 +56,6 @@ jobs:
           -sdk iphoneos \
           -destination generic/platform=iOS \
           -allowProvisioningUpdates \
-          -derivedDataPath /Users/pranavkalapala/Library/Developer/Xcode/DerivedData/${{ github.repository }} \
           -allowProvisioningDeviceRegistration | xcpretty && exit ${PIPESTATUS[0]}
 
   analyze:
@@ -75,17 +74,16 @@ jobs:
           -scheme "$scheme" \
           -"$filetype_parameter" "$file_to_build" \
           -sdk iphoneos \
-          -derivedDataPath /Users/pranavkalapala/Library/Developer/Xcode/DerivedData/${{ github.repository }} \
           -destination generic/platform=iOS | xcpretty && exit ${PIPESTATUS[0]}
 
   test:
     name: Test
-    runs-on: test-runner
+    runs-on: build-runner
     needs: [build]
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      # - name: Checkout
+      #   uses: actions/checkout@v3
 
       - name: Set Destinations
         run: |
@@ -93,12 +91,12 @@ jobs:
           echo Destination String: $result
           echo "result=$result" >> $GITHUB_ENV
 
-      - name: Set Default Scheme
-        run: |
-          scheme_list=$(xcodebuild -list -json | tr -d "\n")
-          default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
-          echo $default | cat >default
-          echo Using default scheme: $default
+      # - name: Set Default Scheme
+      #   run: |
+      #     scheme_list=$(xcodebuild -list -json | tr -d "\n")
+      #     default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
+      #     echo $default | cat >default
+      #     echo Using default scheme: $default
 
       - name: Test
         run: |
@@ -113,9 +111,14 @@ jobs:
           ${{ env.result }} \
           -allowProvisioningUpdates \
           -allowProvisioningDeviceRegistration \
-          -derivedDataPath /Users/pranavkalapala/Library/Developer/Xcode/DerivedData/${{ github.repository }} \
           -resultBundlePath TestResults | xcpretty && exit ${PIPESTATUS[0]}
 
+  result:
+    name: Generate Test Results
+    runs-on: build-runner
+    needs: [test]
+
+    steps:
       - name: Generate Test Results
         uses: JohNan/xcresulttool@johnan/add-job-summary
         #uses: kishikawakatsumi/xcresulttool@v1.5.0
