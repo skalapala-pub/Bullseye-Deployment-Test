@@ -25,6 +25,9 @@ jobs:
     runs-on: build-runner
 
     steps:
+      - name: Clean Workspace
+        uses: AutoModality/action-clean@v1.1.0
+
       - name: Checkout
         uses: actions/checkout@v3
 
