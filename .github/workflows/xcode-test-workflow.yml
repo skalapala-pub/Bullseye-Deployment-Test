@@ -97,6 +97,8 @@ jobs:
   generate:
     name: Run Report Job
     runs-on: test-runner
+    if: ${{ always() }}
+    needs: [build]
 
     steps:
       - name: Download Artifact
