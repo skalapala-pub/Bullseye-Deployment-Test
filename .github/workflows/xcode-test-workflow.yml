@@ -54,7 +54,7 @@ jobs:
           if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
 
-          xcrun xcodebuild build-for-testing \
+          xcrun xcodebuild clean build-for-testing \
           -scheme "$scheme" \
           -"$filetype_parameter" "$file_to_build" \
           -sdk iphoneos \
@@ -101,8 +101,6 @@ jobs:
     needs: [build]
 
     steps:
-      - name: Download Artifact
-        uses: actions/download-artifact@v3.0.0
       
       - name: Generate Test Result Report
         uses: kishikawakatsumi/xcresulttool@v1.5.0
