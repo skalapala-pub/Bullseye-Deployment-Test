@@ -27,7 +27,7 @@ jobs:
     steps:
 
       - name: Check PWD
-        run: pwd
+        run: ls ./../..
 
       - name: Checkout
         uses: actions/checkout@v3
