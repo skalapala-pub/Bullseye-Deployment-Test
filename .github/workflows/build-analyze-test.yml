@@ -122,9 +122,12 @@ jobs:
           -resultBundlePath TestResults | xcpretty && exit ${PIPESTATUS[0]}
 
       - name: Generate Test Results
-        uses: kishikawakatsumi/xcresulttool@v1.5.0
+        uses: JohNan/xcresulttool@main
+        #uses: kishikawakatsumi/xcresulttool@v1.5.0
         with:
           path: TestResults.xcresult
           show-code-coverage: false
           title: Test Results Report
+          create-check: false
+          create-job-summary: true
         if: success() || failure()
