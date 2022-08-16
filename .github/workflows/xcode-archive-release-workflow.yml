@@ -1,4 +1,4 @@
-name: Xcode - Archive and Release Build
+name: Archive and Release Workflow
 
 on:
   workflow_dispatch:
