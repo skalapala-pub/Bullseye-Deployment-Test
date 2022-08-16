@@ -104,15 +104,6 @@ jobs:
           if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
 
-          echo "xcrun xcodebuild test-without-building \
-          -scheme "$scheme" \
-          -"$filetype_parameter" "$file_to_build" \
-          ${{ env.result}} \
-          -derivedDataPath ./DerivedData \
-          -allowProvisioningUpdates \
-          -allowProvisioningDeviceRegistration \
-          -resultBundlePath TestResults | xcpretty && exit ${PIPESTATUS[0]}"
-
           xcrun xcodebuild test-without-building \
           -scheme "$scheme" \
           -"$filetype_parameter" "$file_to_build" \
@@ -126,7 +117,7 @@ jobs:
         #uses: kishikawakatsumi/xcresulttool@v1.5.0
         with:
           path: TestResults.xcresult
-          show-code-coverage: false
+          show-code-coverage: true
           title: Test Results Report
           create-check: false
           create-job-summary: true
