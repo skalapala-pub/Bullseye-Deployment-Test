@@ -21,7 +21,7 @@ env:
 
 jobs:
   build:
-    name: Build and Test
+    name: Build and Test Job
     runs-on: test-runner
 
     steps:
@@ -95,16 +95,26 @@ jobs:
       #   if: success() || failure()
   
   generate:
-    name: Generate Test Results
+    name: Run Report Job
     runs-on: test-runner
 
     steps:
       - name: Download Artifact
         uses: actions/download-artifact@v3.0.0
       
-      - name: Run Action
-        uses: kishikawakatsumi/xcresulttool@main
+      - name: Generate Test Result Report
+        uses: kishikawakatsumi/xcresulttool@v1.5.0
         with:
           path: TestResults.xcresult
           show-code-coverage: false
+          title: Test Results Report
+        if: success() || failure()
+
+      - name: Generate Code Coverage
+        uses: kishikawakatsumi/xcresulttool@v1.5.0
+        with:
+          path: TestResults.xcresult
+          show-passed-tests: false
+          title: Code Coverage
+          upload-bundles: false
         if: success() || failure()
