@@ -54,7 +54,7 @@ jobs:
           -"$filetype_parameter" "$file_to_build" \
           -sdk iphoneos \
           -destination generic/platform=iOS \
-          -derivedDataPath /Users/Shared/github-actions-shared/${{ github.repository }} \
+          -derivedDataPath /Users/pranavkalapala/Desktop/github_actions/shared/${{ github.repository }} \
           -allowProvisioningUpdates \
           -allowProvisioningDeviceRegistration | xcpretty && exit ${PIPESTATUS[0]}
 
@@ -74,7 +74,7 @@ jobs:
           -scheme "$scheme" \
           -"$filetype_parameter" "$file_to_build" \
           -sdk iphoneos \
-          -derivedDataPath /Users/Shared/github-actions-shared/${{ github.repository }} \
+          -derivedDataPath /Users/pranavkalapala/Desktop/github_actions/shared/${{ github.repository }} \
           -destination generic/platform=iOS | xcpretty && exit ${PIPESTATUS[0]}
 
   test:
@@ -112,7 +112,7 @@ jobs:
           ${{ env.result}} \
           -allowProvisioningUpdates \
           -allowProvisioningDeviceRegistration \
-          -derivedDataPath /Users/Shared/github-actions-shared/${{ github.repository }} \
+          -derivedDataPath /Users/pranavkalapala/Desktop/github_actions/shared/${{ github.repository }} \
           -resultBundlePath TestResults | xcpretty && exit ${PIPESTATUS[0]}
 
       - name: Generate Test Results
