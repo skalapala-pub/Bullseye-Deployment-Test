@@ -50,12 +50,13 @@ jobs:
           if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
 
-          xcrun xcodebuild clean build-for-testing \
+          xcodebuild clean build-for-testing \
           -scheme "$scheme" \
           -"$filetype_parameter" "$file_to_build" \
           -sdk iphoneos \
           -destination generic/platform=iOS \
           -allowProvisioningUpdates \
+          -derivedDataPath /Users/pranavkalapala/Library/Developer/Xcode/DerivedData/${{ github.repository }} \
           -allowProvisioningDeviceRegistration | xcpretty && exit ${PIPESTATUS[0]}
 
   analyze:
@@ -70,10 +71,11 @@ jobs:
           if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
 
-          xcrun xcodebuild analyze \
+          xcodebuild analyze \
           -scheme "$scheme" \
           -"$filetype_parameter" "$file_to_build" \
           -sdk iphoneos \
+          -derivedDataPath /Users/pranavkalapala/Library/Developer/Xcode/DerivedData/${{ github.repository }} \
           -destination generic/platform=iOS | xcpretty && exit ${PIPESTATUS[0]}
 
   test:
@@ -105,12 +107,13 @@ jobs:
           if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
 
-          xcrun xcodebuild test-without-building \
+          xcodebuild test-without-building \
           -scheme "$scheme" \
           -"$filetype_parameter" "$file_to_build" \
-          ${{ env.result}} \
+          ${{ env.result }} \
           -allowProvisioningUpdates \
           -allowProvisioningDeviceRegistration \
+          -derivedDataPath /Users/pranavkalapala/Library/Developer/Xcode/DerivedData/${{ github.repository }} \
           -resultBundlePath TestResults | xcpretty && exit ${PIPESTATUS[0]}
 
       - name: Generate Test Results
