@@ -11,6 +11,7 @@
 		8439D2692889B984008A4009 /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 8439D2682889B984008A4009 /* AppCenterCrashes */; };
 		8439D26B2889B984008A4009 /* AppCenterDistribute in Frameworks */ = {isa = PBXBuildFile; productRef = 8439D26A2889B984008A4009 /* AppCenterDistribute */; };
 		8439D2AF288CECDA008A4009 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8439D2AE288CECDA008A4009 /* XCTest.framework */; };
+		843D824328AC5ECB00ED95D1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8439D2AE288CECDA008A4009 /* XCTest.framework */; };
 		84E6F56E28811BCE00DA2A0F /* Bullseye_test_appUIPerfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E6F56D28811BCE00DA2A0F /* Bullseye_test_appUIPerfTests.swift */; };
 		84E6F57028811BCE00DA2A0F /* Bullseye_test_appUIPerfTestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E6F56F28811BCE00DA2A0F /* Bullseye_test_appUIPerfTestsLaunchTests.swift */; };
 		8823C0AB286A1EEA00D6FAC2 /* TextViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8823C0AA286A1EEA00D6FAC2 /* TextViews.swift */; };
@@ -98,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				843D824328AC5ECB00ED95D1 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
