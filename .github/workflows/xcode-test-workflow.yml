@@ -26,14 +26,11 @@ jobs:
 
     steps:
 
-      - name: Check PWD
-        run: ls ./../..
+      - name: Clear Work Directory
+        uses: rtCamp/action-cleanup@master
 
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Print Concurrency String
-        run: echo ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref_name }}
 
       - name: Set Default Scheme
         run: |
@@ -54,7 +51,7 @@ jobs:
           if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
 
-          xcodebuild build-for-testing \
+          xcrun xcodebuild build-for-testing \
           -scheme "$scheme" \
           -"$filetype_parameter" "$file_to_build" \
           -sdk iphoneos \
@@ -70,7 +67,7 @@ jobs:
           if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
 
-          xcodebuild test-without-building \
+          xcrun xcodebuild test-without-building \
           -scheme "$scheme" \
           -"$filetype_parameter" "$file_to_build" \
           ${{ env.result}} \
