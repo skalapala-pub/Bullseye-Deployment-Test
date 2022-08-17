@@ -28,7 +28,7 @@ jobs:
       - name: Clear Working Directory
         run: |
           rm -rf *
-          rm -rf /Users/$(whoami)/Desktop/github-actions-shared/${{ github.repository }}/*
+          rm -rf /Users/$(whoami)/github-actions/derived-data/${{ github.repository }}
       
       - name: Checkout
         uses: actions/checkout@v3
@@ -39,6 +39,7 @@ jobs:
           default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
           echo $default | cat >default
           echo Using default scheme: $default
+          echo "scheme=$default" >> $GITHUB_ENV
 
       - name: Build
         run: |
@@ -51,13 +52,9 @@ jobs:
           -"$filetype_parameter" "$file_to_build" \
           -sdk iphoneos \
           -destination generic/platform=iOS \
-          -derivedDataPath /Users/$(whoami)/Desktop/github-actions-shared/${{ github.repository }}/testing \
+          -derivedDataPath /Users/$(whoami)/github-actions/derived-data/${{ github.repository }} \
           -allowProvisioningUpdates \
           -allowProvisioningDeviceRegistration | xcpretty && exit ${PIPESTATUS[0]}
-      
-      - name: Copy Derived Data for Analyzing
-        run: |
-          cp  -R /Users/$(whoami)/Desktop/github-actions-shared/${{ github.repository }}/testing /Users/$(whoami)/Desktop/github-actions-shared/${{ github.repository }}/analyzing
 
   analyze:
     name: Analyze
@@ -68,15 +65,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Set Default Scheme
-        run: |
-          scheme_list=$(xcodebuild -list -json | tr -d "\n")
-          default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
-          echo $default | cat >default
-          echo Using default scheme: $default
+      # - name: Set Default Scheme
+      #   run: |
+      #     scheme_list=$(xcodebuild -list -json | tr -d "\n")
+      #     default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
+      #     echo $default | cat >default
+      #     echo Using default scheme: $default
 
       - name: Analyze
         run: |
+          echo ${{ env.scheme }}
+          scheme=${{ env.scheme }}
           if [ $scheme = default ]; then scheme=$(cat default); fi
           if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
@@ -85,7 +84,7 @@ jobs:
           -scheme "$scheme" \
           -"$filetype_parameter" "$file_to_build" \
           -sdk iphoneos \
-          -derivedDataPath /Users/$(whoami)/Desktop/github-actions-shared/${{ github.repository }}/testing \
+          -derivedDataPath /Users/$(whoami)/github-actions/derived-data/${{ github.repository }} \
           -destination generic/platform=iOS | xcpretty && exit ${PIPESTATUS[0]}
 
   test:
@@ -123,12 +122,13 @@ jobs:
           ${{ env.result }} \
           -allowProvisioningUpdates \
           -allowProvisioningDeviceRegistration \
-          -derivedDataPath /Users/$(whoami)/Desktop/github-actions-shared/${{ github.repository }}/testing \
-          -resultBundlePath TestResults | xcpretty && exit ${PIPESTATUS[0]}
+          -derivedDataPath /Users/$(whoami)/github-actions/derived-data/${{ github.repository }} \
+          -resultBundlePath /Users/$(whoami)/github-actions/derived-data/${{ github.repository }}/TestResults | xcpretty && exit ${PIPESTATUS[0]}
 
   result:
     name: Generate Test Results
     runs-on: build-runner
+    if: ${{ always() }}
     needs: [test]
 
     steps:
@@ -136,7 +136,7 @@ jobs:
         uses: JohNan/xcresulttool@johnan/add-job-summary
         #uses: kishikawakatsumi/xcresulttool@v1.5.0
         with:
-          path: TestResults.xcresult
+          path: /Users/$(whoami)/github-actions/derived-data/${{ github.repository }}/TestResults.xcresult
           show-code-coverage: true
           title: Test Results Report
           create-check: false
