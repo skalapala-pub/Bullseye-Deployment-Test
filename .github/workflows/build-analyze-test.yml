@@ -132,13 +132,15 @@ jobs:
 
     steps:
       - name: Set path
-        run: path_to_file="/Users/$(whoami)/github-actions/derived-data/${{ github.repository }}/TestResults.xcresult"
+        run: |
+          path_to_file="/Users/$(whoami)/github-actions/derived-data/${{ github.repository }}/TestResults.xcresult"
+          echo "path=$path_to_file" >> $GITHUB_ENV
 
       - name: Generate Test Results
         uses: JohNan/xcresulttool@johnan/add-job-summary
         #uses: kishikawakatsumi/xcresulttool@v1.5.0
         with:
-          path: $path_to_file
+          path: ${{ env.path }}
           show-code-coverage: true
           title: Test Results Report
           create-check: false
