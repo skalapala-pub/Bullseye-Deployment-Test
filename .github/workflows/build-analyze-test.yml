@@ -137,6 +137,7 @@ jobs:
     name: Generate Test Results
     runs-on: test-runner
     needs: [test]
+    if: success() || failure()
 
     steps:
       - name: Set path
@@ -153,4 +154,3 @@ jobs:
           title: Test Results Report
           create-check: false
           create-job-summary: true
-        if: success() || failure()
