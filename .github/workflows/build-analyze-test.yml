@@ -140,7 +140,7 @@ jobs:
     name: Generate Test Results
     runs-on: test-runner
     needs: [test]
-    if: ${{ !cancelled() }}
+    if: cancelled() != true
 
     steps:
       - name: Set path
