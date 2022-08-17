@@ -36,10 +36,11 @@ jobs:
       - name: Set Destinations
         run: |
           result=$(./.github/workflows/id_devices.sh)
-          echo Destination String: $result
           if test ${#result} -eq 0; then
+            echo "::error::No device destinations"
             exit 1
           fi
+          echo Destination String: $result
           echo "result=$result" >> $GITHUB_ENV
       
       - name: Set Default Scheme
@@ -104,13 +105,13 @@ jobs:
       # - name: Checkout
       #   uses: actions/checkout@v3
 
-      - name: Set Destinations
-        run: |
-          result=$(./.github/workflows/id_devices.sh)
-          echo Destination String: $result
-          echo ${#result}
-          exit 1
-          echo "result=$result" >> $GITHUB_ENV
+      # - name: Set Destinations
+      #   run: |
+      #     result=$(./.github/workflows/id_devices.sh)
+      #     echo Destination String: $result
+      #     echo ${#result}
+      #     exit 1
+      #     echo "result=$result" >> $GITHUB_ENV
 
       # - name: Set Default Scheme
       #   run: |
