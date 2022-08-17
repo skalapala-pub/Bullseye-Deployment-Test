@@ -62,7 +62,7 @@ jobs:
   analyze:
     name: Analyze
     runs-on: build-runner
-    needs: [build]
+    needs: [build, test]
 
     steps:
       - name: Checkout
@@ -85,7 +85,7 @@ jobs:
           -scheme "$scheme" \
           -"$filetype_parameter" "$file_to_build" \
           -sdk iphoneos \
-          -derivedDataPath /Users/$(whoami)/Desktop/github-actions-shared/${{ github.repository }}/analyzing \
+          -derivedDataPath /Users/$(whoami)/Desktop/github-actions-shared/${{ github.repository }}/testing \
           -destination generic/platform=iOS | xcpretty && exit ${PIPESTATUS[0]}
 
   test:
