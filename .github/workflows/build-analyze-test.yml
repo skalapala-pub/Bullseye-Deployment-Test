@@ -37,8 +37,9 @@ jobs:
         run: |
           result=$(./.github/workflows/id_devices.sh)
           echo Destination String: $result
-          echo ${#result}
-          exit 1
+          if test ${#result} -eq 0; then
+            exit 1
+          fi
           echo "result=$result" >> $GITHUB_ENV
       
       - name: Set Default Scheme
@@ -137,7 +138,7 @@ jobs:
   result:
     name: Generate Test Results
     runs-on: test-runner
-    if: ${{ always() }}
+    if: ${{ success() || failure() }}
     needs: [test]
 
     steps:
