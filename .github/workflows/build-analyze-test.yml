@@ -132,7 +132,7 @@ jobs:
           -allowProvisioningUpdates \
           -allowProvisioningDeviceRegistration \
           -derivedDataPath /Users/$(whoami)/github-actions/derived-data/${{ github.repository }} \
-          -resultBundlePath /Users/$(whoami)/github-actions/derived-data/${{ github.repository }}/TestResults | xcpretty && exit ${PIPESTATUS[0]}
+          -resultBundlePath /Users/$(whoami)/github-actions/derived-data/${{ github.repository }}/TestResults/TestResults.xcresult | xcpretty && exit ${PIPESTATUS[0]}
 
   result:
     name: Generate Test Results
@@ -142,7 +142,7 @@ jobs:
     steps:
       - name: Set path
         run: |
-          path_to_file="/Users/$(whoami)/github-actions/derived-data/${{ github.repository }}/TestResults.xcresult"
+          path_to_file="/Users/$(whoami)/github-actions/derived-data/${{ github.repository }}/TestReults/TestResults.xcresult"
           echo "path=$path_to_file" >> $GITHUB_ENV
 
       - name: Generate Test Results
