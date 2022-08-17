@@ -22,18 +22,13 @@ env:
 jobs:
   build:
     name: Build
-    runs-on: build-runner
+    runs-on: test-runner
   
     steps:
       - name: Clear Working Directory
         run: |
-          user=$(whoami)
-          echo $user
-          pwd
-          ls
           rm -rf *
-          pwd
-          ls
+          rm -rf /Users/Shared/github-actions/${{ github.repository }}/*
       
       - name: Checkout
         uses: actions/checkout@v3
@@ -56,13 +51,18 @@ jobs:
           -"$filetype_parameter" "$file_to_build" \
           -sdk iphoneos \
           -destination generic/platform=iOS \
+          -derivedDataPath /Users/Shared/github-actions/${{ github.repository }}/testing
           -allowProvisioningUpdates \
           -allowProvisioningDeviceRegistration | xcpretty && exit ${PIPESTATUS[0]}
+      
+      - name: Copy Derived Data for Analyzing
+        run: |
+          cp  -R /Users/Shared/github-actions/${{ github.repository }}/testing /Users/Shared/github-actions/${{ github.repository }}/analyzing
 
   analyze:
     name: Analyze
     runs-on: build-runner
-    needs: [build, test]
+    needs: [build]
 
     steps:
       - name: Analyze
@@ -75,11 +75,12 @@ jobs:
           -scheme "$scheme" \
           -"$filetype_parameter" "$file_to_build" \
           -sdk iphoneos \
+          -derivedDataPath /Users/Shared/github-actions/${{ github.repository }}/analyzing
           -destination generic/platform=iOS | xcpretty && exit ${PIPESTATUS[0]}
 
   test:
     name: Test
-    runs-on: build-runner
+    runs-on: test-runner
     needs: [build]
 
     steps:
@@ -112,6 +113,7 @@ jobs:
           ${{ env.result }} \
           -allowProvisioningUpdates \
           -allowProvisioningDeviceRegistration \
+          -derivedDataPath /Users/Shared/github-actions/${{ github.repository }}/testing
           -resultBundlePath TestResults | xcpretty && exit ${PIPESTATUS[0]}
 
   result:
