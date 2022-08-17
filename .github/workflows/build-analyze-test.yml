@@ -39,7 +39,6 @@ jobs:
           default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
           echo $default | cat >default
           echo Using default scheme: $default
-          echo "scheme=$default" >> $GITHUB_ENV
 
       - name: Build
         run: |
@@ -65,12 +64,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # - name: Set Default Scheme
-      #   run: |
-      #     scheme_list=$(xcodebuild -list -json | tr -d "\n")
-      #     default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
-      #     echo $default | cat >default
-      #     echo Using default scheme: $default
+      - name: Set Default Scheme
+        run: |
+          scheme_list=$(xcodebuild -list -json | tr -d "\n")
+          default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
+          echo $default | cat >default
+          echo Using default scheme: $default
 
       - name: Analyze
         run: |
@@ -127,16 +126,19 @@ jobs:
 
   result:
     name: Generate Test Results
-    runs-on: build-runner
+    runs-on: test-runner
     if: ${{ always() }}
     needs: [test]
 
     steps:
+      - name: Set path
+        run: path_to_file="/Users/$(whoami)/github-actions/derived-data/${{ github.repository }}/TestResults.xcresult"
+
       - name: Generate Test Results
         uses: JohNan/xcresulttool@johnan/add-job-summary
         #uses: kishikawakatsumi/xcresulttool@v1.5.0
         with:
-          path: /Users/$(whoami)/github-actions/derived-data/${{ github.repository }}/TestResults.xcresult
+          path: $path_to_file
           show-code-coverage: true
           title: Test Results Report
           create-check: false
