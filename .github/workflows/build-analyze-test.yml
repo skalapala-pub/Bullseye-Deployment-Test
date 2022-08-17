@@ -71,6 +71,12 @@ jobs:
     needs: [build, test]
 
     steps:
+
+      - name: Clear Working Directory
+        run: |
+          rm -rf *
+          rm -rf /Users/$(whoami)/github-actions/derived-data/${{ github.repository }}
+
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -102,23 +108,6 @@ jobs:
     needs: [build]
 
     steps:
-      # - name: Checkout
-      #   uses: actions/checkout@v3
-
-      # - name: Set Destinations
-      #   run: |
-      #     result=$(./.github/workflows/id_devices.sh)
-      #     echo Destination String: $result
-      #     echo ${#result}
-      #     exit 1
-      #     echo "result=$result" >> $GITHUB_ENV
-
-      # - name: Set Default Scheme
-      #   run: |
-      #     scheme_list=$(xcodebuild -list -json | tr -d "\n")
-      #     default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
-      #     echo $default | cat >default
-      #     echo Using default scheme: $default
 
       - name: Test
         run: |
@@ -140,7 +129,6 @@ jobs:
     name: Generate Test Results
     runs-on: test-runner
     needs: [test]
-    if: cancelled() != true
 
     steps:
       - name: Set path
