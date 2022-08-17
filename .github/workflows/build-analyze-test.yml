@@ -74,7 +74,7 @@ jobs:
       - name: Clear Working Directory
         run: |
           rm -rf *
-          
+
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -141,7 +141,7 @@ jobs:
     steps:
       - name: Set path
         run: |
-          path_to_file="/Users/$(whoami)/github-actions/derived-data/${{ github.repository }}/TestReults/TestResults.xcresult"
+          path_to_file="/Users/$(whoami)/github-actions/derived-data/${{ github.repository }}/TestResults/TestResults.xcresult"
           echo "path=$path_to_file" >> $GITHUB_ENV
 
       - name: Generate Test Results
