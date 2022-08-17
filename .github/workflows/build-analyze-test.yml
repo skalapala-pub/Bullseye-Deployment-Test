@@ -51,7 +51,7 @@ jobs:
           -"$filetype_parameter" "$file_to_build" \
           -sdk iphoneos \
           -destination generic/platform=iOS \
-          -derivedDataPath /Users/$(whoami)/github-actions-shared/${{ github.repository }}/testing
+          -derivedDataPath /Users/$(whoami)/github-actions-shared/${{ github.repository }}/testing \
           -allowProvisioningUpdates \
           -allowProvisioningDeviceRegistration | xcpretty && exit ${PIPESTATUS[0]}
       
@@ -75,7 +75,7 @@ jobs:
           -scheme "$scheme" \
           -"$filetype_parameter" "$file_to_build" \
           -sdk iphoneos \
-          -derivedDataPath /Users/$(whoami)/github-actions-shared/${{ github.repository }}/analyzing
+          -derivedDataPath /Users/$(whoami)/github-actions-shared/${{ github.repository }}/analyzing \
           -destination generic/platform=iOS | xcpretty && exit ${PIPESTATUS[0]}
 
   test:
@@ -113,7 +113,7 @@ jobs:
           ${{ env.result }} \
           -allowProvisioningUpdates \
           -allowProvisioningDeviceRegistration \
-          -derivedDataPath /Users/$(whomai)/github-actions-shared/${{ github.repository }}/testing
+          -derivedDataPath /Users/$(whomai)/github-actions-shared/${{ github.repository }}/testing \
           -resultBundlePath TestResults | xcpretty && exit ${PIPESTATUS[0]}
 
   result:
