@@ -10,7 +10,7 @@ env:
   group: ${{ 'Collaborators' }}
 
 jobs:
-  build:
+  archive:
     name: Create Archive, IPA, and release build
     runs-on: build-runner
 
@@ -48,6 +48,41 @@ jobs:
           -derivedDataPath ./DerivedData
           -archivePath ./exportOutputData/result.xcarchive | xcpretty && exit ${PIPESTATUS[0]}
 
+      # - name: Upload Symbols and Info.plist Artifacts
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: Symbols and Info.plist
+      #     path: |
+      #       ./exportOutputData/result.xcarchive/dSYMs
+      #       ./exportOutputData/result.xcarchive/Info.plist
+
+      # - name: Create IPA
+      #   run: |
+      #     xcrun xcodebuild -exportArchive \
+      #     -archivePath ./exportOutputData/result.xcarchive \
+      #     -exportPath ./exportOutputData/ \
+      #     -exportOptionsPlist ./exportInputData/export.plist
+
+      # - name: Upload IPA Artifact
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: IPA file
+      #     path: ./exportOutputData/**.ipa
+
+      # - name: Distribute IPA to App Center
+      #   run: |
+      #     appcenter distribute release \
+      #     --app ${{ env.owner }}/${{ env.app_name }} \
+      #     --file ./exportOutputData/${{ env.app_name }}.ipa \
+      #     --group ${{ env.group }} \
+      #     --token ${{ secrets.APP_CENTER_APP_API_TOKEN }}
+  
+  archive-artifact:
+    name: Upload Symbols and Info.plist Artifacts
+    runs-on: build-runner
+    needs: [archive]
+
+    steps:
       - name: Upload Symbols and Info.plist Artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -55,20 +90,38 @@ jobs:
           path: |
             ./exportOutputData/result.xcarchive/dSYMs
             ./exportOutputData/result.xcarchive/Info.plist
+  
+  create-ipa:
+    name: Export Archive to IPA
+    runs-on: build-runner
+    needs: [archive]
 
+    steps:
       - name: Create IPA
         run: |
           xcrun xcodebuild -exportArchive \
           -archivePath ./exportOutputData/result.xcarchive \
           -exportPath ./exportOutputData/ \
           -exportOptionsPlist ./exportInputData/export.plist
+  
+  ipa-artifact:
+    name: Upload IPA Artifact
+    runs-on: build-runner
+    needs: [create-ipa]
 
+    steps:
       - name: Upload IPA Artifact
         uses: actions/upload-artifact@v3
         with:
           name: IPA file
           path: ./exportOutputData/**.ipa
 
+  distribute:
+    name: Distribute IPA to App Center
+    runs-on: build-runner
+    needs: [create-ipa]
+
+    steps:
       - name: Distribute IPA to App Center
         run: |
           appcenter distribute release \
