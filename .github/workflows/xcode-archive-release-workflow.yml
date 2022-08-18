@@ -45,7 +45,7 @@ jobs:
           -configuration release \
           -sdk iphoneos \
           -destination generic/platform=iOS \
-          -derivedDataPath ./DerivedData
+          -derivedDataPath ./DerivedData \
           -archivePath ./exportOutputData/result.xcarchive | xcpretty && exit ${PIPESTATUS[0]}
 
       # - name: Upload Symbols and Info.plist Artifacts
